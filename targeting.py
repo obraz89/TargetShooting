@@ -19,4 +19,4 @@ def calcBulletDirection():
     # logic of shooting
     # if getTargetPosition is know, calculate direction to shoot
     angle = 0.25*math.pi
-    return (math.cos(angle), -math.sin(angle))
+    return (math.cos(angle), math.sin(angle))

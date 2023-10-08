@@ -14,6 +14,8 @@ import time
 from actor import Actor
 from targeting import getTargetPosition, calcBulletDirection
 
+from settings import Settings
+
 class TargetShooting:
     """Overall class etc"""
     
@@ -21,16 +23,17 @@ class TargetShooting:
         """Initialize the game"""
         pygame.init()
         
-#        self.settings = Settings()
+        self.settings = Settings()
 #        s = self.settings
 
-        screen_width = 1000
-        screen_height = 400
+        screen_width = self.settings.screen_width
+        screen_height = self.settings.screen_height
+        
         self.screen = pygame.display.set_mode((screen_width, screen_height))
         pygame.display.set_caption("Target Shooting")
         
         self.bullet = Actor(self)
-        self.bullet.set_position(500, 200)
+        #self.bullet.set_position(100, 100)
         self.target = Actor(self)
         
         self.time_start = time.time()
@@ -44,6 +47,10 @@ class TargetShooting:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
+                    
+            return running
+        
+        #unused part with controls
                     
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
@@ -67,8 +74,8 @@ class TargetShooting:
         #self.bullet.update()
         #screen_x, screen_y = getTargetPosition(time)
         
-        bullet_x = int(500 + 10*self.bulletVx*self.time)
-        bullet_y = int(150 + 10*self.bulletVy*self.time)
+        bullet_x = int(self.settings.bullet_start_x + self.bulletVx*self.time)
+        bullet_y = int(self.settings.bullet_start_y + self.bulletVy*self.time)
         
         #bullet_x = 500
         #bullet_y = 150
@@ -88,7 +95,9 @@ class TargetShooting:
     def run_game(self):
         """Game main loop"""
         
-        self.bulletVx, self.bulletVy = calcBulletDirection()
+        kx, ky = calcBulletDirection()
+        self.bulletVx = self.settings.bullet_speed*kx
+        self.bulletVy = self.settings.bullet_speed*ky
         
         running = True
         while running:
