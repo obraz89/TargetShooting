@@ -1,0 +1,15 @@
+##############################
+Чтобы не запутаться последовательность действий такая:
+1. Установить github desktop
+2. Склонировать проект alien_invasion себе на комп
+3. Установить pygame из консоли анаконды или из навигатора (команды см. ниже)
+4. После открытия проекта alien_invasion и запуска должна запускаться игра как я сегодня показывал
+5. Можно начинать вносить правки в код под наши нужды
+
+############################## установка pygame
+# install pygame (not from anaconda, terminal)
+python -m pip --user pygame
+
+#install from anaconda (base venv)
+1. run conda navigation -> environment -> base or other-> open terminal
+2. pip install pygame
